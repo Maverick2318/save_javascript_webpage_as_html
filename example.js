@@ -1,6 +1,9 @@
+#!/usr/bin/env node
+
 const puppeteer = require('puppeteer')
 const fs = require('fs')
 const path = require('path')
+const process = require('process')
 
 // Get the CLI args and strip off the first two elements. See: https://nodejs.org/en/knowledge/command-line/how-to-parse-command-line-arguments/
 var cliArgs = process.argv.slice(2)
@@ -25,7 +28,8 @@ try {
 (async () => {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
-  await page.goto('file:///Users/nsiddiq/jstack-review/index.html')
+  const url_path_to_jstack_review = "file:///" + process.cwd() + "/index.html"
+  await page.goto(url_path_to_jstack_review)
 
   // get the selector input type=file (for upload file)
   await page.waitForSelector('input[type=file]')
