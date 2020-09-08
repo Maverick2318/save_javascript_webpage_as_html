@@ -26,7 +26,7 @@ try {
 }
 
 (async () => {
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']})
   const page = await browser.newPage()
   const url_path_to_jstack_review = "file:///" + process.cwd() + "/index.html"
   await page.goto(url_path_to_jstack_review)
